@@ -24,13 +24,13 @@ class StudentManagement:
         self.students[student_id] = {"name": name, "age": age}
         return True
 
-    def remove_student(self, id: str) -> bool:
-        if id not in self.students:
+    def remove_student(self, student_id: str) -> bool:
+        if student_id not in self.students:
             return False
 
-        del self.students[id]
-        if id in self.grades:
-            del self.grades[id]
+        del self.students[student_id]
+        if student_id in self.grades:
+            del self.grades[student_id]
         return True
 
     def add_grade(self, student_id: str, subject: str, grade: float) -> bool:
