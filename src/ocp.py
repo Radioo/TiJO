@@ -1,4 +1,13 @@
-class Square:
+from abc import ABC, abstractmethod
+
+
+class IDrawable(ABC):
+    @abstractmethod
+    def draw(self):
+        pass
+
+
+class Square(IDrawable):
     def __init__(self, a):
         self.a = a
 
@@ -7,24 +16,29 @@ class Square:
             print(self.a * "o ")
         print()
 
-class Triangle:
-    def draw_figure(self, h):
-        for side in range(0, h):
+
+class Triangle(IDrawable):
+    def __init__(self, h):
+        self.h = h
+
+    def draw(self):
+        for side in range(0, self.h):
             print(side * "o ")
         print()
 
+
 class FigureDrawer:
-    def draw_square(self, figure):
+    def draw(self, figure):
         figure.draw()
 
-    def draw_triangle(self, figure, h):
-        figure.draw_figure(h)
 
+# Usage
 a = 5
 h = 5
 
 square = Square(a)
-triangle = Triangle()
+triangle = Triangle(h)
 
-FigureDrawer().draw_square(square)
-FigureDrawer().draw_triangle(triangle, h)
+drawer = FigureDrawer()
+drawer.draw(square)
+drawer.draw(triangle)
